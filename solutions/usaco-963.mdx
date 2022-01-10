@@ -14,7 +14,7 @@ author: Krish Thawani, Hua Zhi Vee, Jonathan Paulson, Ben Dodge
 [Official Analysis](http://www.usaco.org/current/data/sol_gymnastics_bronze_dec19.html)
 
 <LanguageSection>
-<CPPSection />
+
 <JavaSection>
 
 ```java
@@ -75,6 +75,38 @@ public class gymnastics {
 ```
 
 </JavaSection>
+
+<PySection>
+```py
+# In this approach, we're going to try every single pair
+# And see if the pair is consistent in all sessions
+fin = open("gymnastics.in")
+fout = open("gymnastics.out", 'w')
+
+k, n = map(int, fin.readline().split())
+sessions = []
+for a in range(k):
+	sessions.append(fin.readline().strip().split())
+
+answer = 0
+for a in range(1,n+1):
+	for b in range(1,n+1):
+		# Turn the pair into a string instead of an int to make things simpler
+		a = str(a)
+		b = str(b)
+		# Iterate over every session, incrementing a counter every time that
+		# a appears before b
+		total = 0
+		for session in sessions:
+			if session.index(a) < session.index(b):
+				total += 1
+		# If a appears before b every time, add one to the total
+		if total == k:
+			answer += 1
+fout.write(str(answer) + '\n')
+```
+</PySection>
+
 </LanguageSection>
 
 ## Alternate Solution
